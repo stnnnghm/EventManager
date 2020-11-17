@@ -30,7 +30,7 @@ var (
 func TestMain(t *testing.M) {
 	log.Println("Registering")
 
-	conn := "postgres://postgres:pass@localhost:5433/event_manager?sslmode=disable"
+	conn := "postgres://user:password@db:5432/db?sslmode=disable"
 	if c := os.Getenv("DB_CONN"); c != "" {
 		conn = c
 	}

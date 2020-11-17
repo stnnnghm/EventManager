@@ -7,7 +7,7 @@ import (
 
 func main() {
 	args := Args{
-		conn: "postgres://postgres:@localhost:5433/event_manager",
+		conn: "postgres://postgres:@postgres:5433/event_manager?sslmode=disable",
 		port: ":8080",
 	}
 

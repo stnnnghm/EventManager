@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   app:
     container_name: events_manager
     build: .
@@ -10,7 +9,7 @@ services:
     restart: on-failure
     environment:
       PORT: 8080
-      DB_CONN: "postgres://postgres:pass@localhost:5433/event_manager"
+      DB_CONN: "postgres://postgres:pass@postgres:5433/event_manager?sslmode=disable"
     volumes:
       - .:/app
     depends_on:
@@ -22,7 +21,7 @@ services:
     image: postgres
     container_name: events_db
     ports:
-      - '5434:5434'
+      - '5432:5432'
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "pass"
