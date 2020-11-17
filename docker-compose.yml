@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+
+  app:
+    container_name: events_manager
+    build: .
+    ports:
+      - 8080:8080
+    restart: on-failure
+    environment:
+      PORT: 8080
+      DB_CONN: "postgres://postgres:pass@localhost:5433/event_manager"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    links:
+      - db
+
+  db:
+    image: postgres
+    container_name: events_db
+    ports:
+      - '5434:5434'
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "pass"
+      POSTGRES_DB: "event_manager"
+      TZ: 'UTC'
+      PGTZ: 'UTC'
